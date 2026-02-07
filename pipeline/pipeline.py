@@ -21,7 +21,7 @@ def load_data(
     data_url: str = DATA_URL,
     cache_path: Path = Path("data/winequality-red.csv")
     ) -> pd.DataFrame:
-    if cache_path.exists():
+    if cache_path.exists(): # Si el archivo ya existe no se descarga
         return pd.read_csv(cache_path, sep=";")
     
     df = pd.read_csv(data_url, sep=";")
@@ -47,7 +47,6 @@ def split_features_target(
 
 
 # Funcion de construccion del pipeline
-
 def built_pipeline(numeric_features: list[str]) -> Pipeline:
     
     numeric_transformer = Pipeline(
